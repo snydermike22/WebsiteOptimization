@@ -1,0 +1,28 @@
+Sites Uses.
+
+Just like with my last few project. I spent many hours online, researching, googling, checking web site after web site.  But I will list a few of the ones I used below.  
+
+I did go to google.com and type in.  Rennderblocking, css, compress image, help with making my web sight faster, how to minify, modify, change style.left, what does transformation mean……. and many many more.
+
+Here are a few web sights that I encountered in my research for this Project.
+www.google.com
+www.yahoo.com
+https://developers.google.com/speed/pagespeed/insights/
+http://jscompress.com/
+http://tools.dynamicdrive.com/imageoptimizer/index.php
+http://toddmotto.com/deprecating-the-switch-statement-for-object-literals/
+https://plus.google.com/u/0/events/c7ms1fko2vnt7aidd3hldfnu69k
+http://www.w3schools.com/hel
+http://www.webteacher.com/javascript/
+http://www.codecademy.com/en/tracks/javascript
+http://perfectionkills.com/optimizing-html/
+http://blog.monitis.com/2011/05/29/30-tips-to-optimize-htmlcssimages-for-smooth-web-experience/
+http://gtmetrix.com/optimize-images.html
+https://developers.google.com/speed/articles/optimizing-javascript
+http://www.smashingmagazine.com/2012/11/05/writing-fast-memory-efficient-javascript/
+http://home.earthlink.net/~kendrasg/info/js_opt/
+http://www.w3schools.com/jsref/prop_style_left.asp
+http://www.tizag.com/cssT/inline.php
+http://www.w3schools.com/tags/att_script_async.asp
+http://www.w3schools.com/tags/canvas_translate.asp
+http://support.smartling.com/hc/en-us/articles/201295973-How-to-Process-JavaScript-for-Translation
