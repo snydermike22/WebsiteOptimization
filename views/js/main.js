@@ -431,6 +431,9 @@ var resizePizzas = function(size) {
     var windowwidth = document.querySelector("#randomPizzas").offsetWidth;
     var oldsize = oldwidth / windowwidth;
 
+
+    return dx;
+
     // TODO: change to 3 sizes? no more xl?
     // Changes the slider value to a percent width
     function sizeSwitcher (size) {
@@ -449,19 +452,24 @@ var resizePizzas = function(size) {
     var newsize = sizeSwitcher(size);
     var dx = (newsize - oldsize) * windowwidth;
 
-    return dx;
   }
 
   // Iterates through pizza elements on the page and changes their widths
-  function changePizzaSizes(size) {
-    for (var i = 0; i < document.querySelectorAll(".randomPizzaContainer").length; i++) {
-      var dx = determineDx(document.querySelectorAll(".randomPizzaContainer")[i], size);
-      var newwidth = (document.querySelectorAll(".randomPizzaContainer")[i].offsetWidth + dx) + 'px';
-      document.querySelectorAll(".randomPizzaContainer")[i].style.width = newwidth;
+  // moved a few things out of the loop to make it run faster.
+  // didnt need to get the randomPizzaContainer, dx or the newwidth each time in the loop
+function changePizzaSizes(size) {
+      var newPizza = document.querySelectorAll(".randomPizzaContainer");
+      var dx = determineDx(newPizza[0], size);
+      var newwidth = (newPizza[0].offsetWidth + dx) + 'px';
+      
+    for (var i = 0; i < newPizza.length; i++) {
+      newPizza[i].style.width = newwidth;
     }
   }
 
   changePizzaSizes(size);
+
+
 
   // User Timing API is awesome
   window.performance.mark("mark_end_resize");
@@ -504,32 +512,23 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 // https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html
 
 // Moves the sliding background pizzas based on scroll position
+
+
+//Put the code back to the origianl per my feedback.  
 function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
 
-//faster way to access the DOM than querySelectorAll changing to getElementsByClassName. Suggestion per Office Hours  Mike  
-var items = document.getElementsByClassName('mover'); 
+  //faster way to access the DOM than querySelectorAll changing to getElementsByClassName. Suggestion per Office Hours  Mike  
+  var items = document.getElementsByClassName('mover'); 
 
-//moving out of loop. Per office hours suggestion. Mike  
-var phase = Math.sin(document.body.scrollTop / 1250);
-
-
-for (var i = 0; i < items.length; i++) {
+  for (var i = 0, l = items.length; i < l; i++) {  
+      var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
   
-//Paint takes a ton of time. have to only paint the moving pieces and not rest of the screen
- 
- //using transform = translateX instead of style.left per office hours suggestion. Mike
- // (i % 5) will only return 1 of 5 numbers (0,1,2,3,4) which is multiplied in the tranlateX()
- // Put in this if else to get pizza to show. 0,1,2 top code, 3, 4 bottom code. Mike
-if ((i % 5) < 3) {
-   items[i].style.transform = 'translateX(' + 200 * (phase + (-i % 5))+ 'px' + ')';
-}
-else {
-   items[i].style.transform = 'translateX(' + 100 * (phase + (i % 5))+ 'px' + ')';
+  //using transform = translateX instead of style.left per office hours suggestion. Mike
+    items[i].style.transform = "translateX(" + 250 * phase + "px)"; 
   }
-}
-  
+
   // User Timing API to the rescue again. Seriously, it's worth learning.
   // Super easy to create custom metrics.
   window.performance.mark("mark_end_frame");
@@ -538,7 +537,9 @@ else {
     var timesToUpdatePosition = window.performance.getEntriesByName("measure_frame_duration");
     logAverageFrame(timesToUpdatePosition);
   }
+
 }
+
 
 // runs updatePositions on scroll
 window.addEventListener('scroll', updatePositions);
@@ -549,7 +550,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var cols = 5;
   var s = 256;
 
-  // changed it to 25 in the loop from 200, per office hours suggestion.  Mike
+  // changed it to 30 in the loop from 200, per office hours suggestion.  Mike
   for (var i = 0; i < 30; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
