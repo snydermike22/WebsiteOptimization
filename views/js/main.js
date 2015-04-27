@@ -432,7 +432,7 @@ var resizePizzas = function(size) {
     var oldsize = oldwidth / windowwidth;
 
 
-    return dx;
+  
 
     // TODO: change to 3 sizes? no more xl?
     // Changes the slider value to a percent width
@@ -451,6 +451,8 @@ var resizePizzas = function(size) {
 
     var newsize = sizeSwitcher(size);
     var dx = (newsize - oldsize) * windowwidth;
+
+      return dx;
 
   }
 
