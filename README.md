@@ -13,20 +13,26 @@ These are things I did to optimize my page. Keep scrolling and Read below for sp
 
 List of Main.js Changes.
 
-1. moved a few things out of the for loop to make it run faster, didnt need to get the randomPizzaContainer, dx or the newwidth each time in the loop.
+1. Moved element selector into global variables
 
-2. Moved the outside the loop also.  So it doesnt do it 100x only once. 
+2. Moved a few things out of the for loop to make it run faster, didnt need to get the randomPizzaContainer, dx or the newwidth each time in the loop.
+
+3. Moved the outside the loop also.  So it doesnt do it 100x only once. 
 var pizzasDiv = document.getElementById("randomPizzas");
 
-3.  faster way to access the DOM than querySelectorAll changing to getElementsByClassName. Suggestion per Office Hours.
+4. Moves the sliding background pizzas based on scroll position
 
-4.  Instead of style.left changed it to style.transform = "translateX(".  Per office hours suggestion
+5. Moved items out of function so it only gets called once
 
-5. Changed Columns in the below to 5 from 8.  Only shows 5 at a time at most anyways.  
+6. Moved a calculation out of the loop
+
+7. Instead of style.left changed it to style.transform = "translate3d(".  Per office hours suggestion
+
+8. Changed Columns in the below to 5 from 8.  Only shows 5 at a time at most anyways.  
   var cols = 5;
   var s = 256;
 
-6. Changed it to 30 in the below loop from 200, per office hours suggestion.  Doesnt need to go all the way to 200
+9. Changed it to 30 in the below loop from 200, per office hours suggestion.  Doesnt need to go all the way to 200
   for (var i = 0; i < 30; i++) {
 
 
@@ -51,7 +57,7 @@ profilepic is now 11kb, pizzeria is 1kb
 
 Pizza.html Changes
 
-1. minified my javascript to mainmin.js
+1. minified my javascript to mainmin2.js
 
 2. compressed image pizza2 down to 9 kb
 
